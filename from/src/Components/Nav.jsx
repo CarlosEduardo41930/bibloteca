@@ -1,5 +1,9 @@
 import home from "../assets/icones/home_24dp_28D2EC_FILL0_wght400_GRAD0_opsz24.svg";
 import livro from "../assets/icones/import_contacts_24dp_28D2EC_FILL0_wght400_GRAD0_opsz24.svg"
+import lists from "../assets/icones/list_24dp_28D2EC_FILL0_wght400_GRAD0_opsz24.svg";
+import add from "../assets/icones/add_24dp_28D2EC_FILL0_wght400_GRAD0_opsz24.svg";
+import ajustes from "../assets/icones/build_24dp_28D2EC_FILL0_wght400_GRAD0_opsz24.svg";
+
 function Nav() {
   const lista = {
     display: "flex",
@@ -28,7 +32,7 @@ function Nav() {
           </li>
           <li style={lista}>
             <img
-              src="https://cdn-icons-png.flaticon.com/512/54/54410.png"
+              src={lists}
               alt="icone de listar livro"
               className="w-6 "
             />{" "}
@@ -36,7 +40,7 @@ function Nav() {
           </li>
           <li style={lista}>
             <img
-              src="https://cdn-icons-png.flaticon.com/512/992/992651.png"
+              src={add}
               alt="icon de novo livro"
               className="w-6 "
             />{" "}
@@ -44,7 +48,7 @@ function Nav() {
           </li>
           <li style={lista}>
             <img
-              src="https://cdn-icons-png.flaticon.com/512/142/142202.png"
+              src={ajustes}
               alt="icon de ajuste"
               className="w-6 "
             />{" "}
