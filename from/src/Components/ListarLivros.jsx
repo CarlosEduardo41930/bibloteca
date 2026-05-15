@@ -1,4 +1,12 @@
 function ListarLivros(){
+  const [livros, setLivros] = React.useState([]);
+  userEffect(() => {
+    fetch('http://localhost:418/livros')
+      .then(res => res.json())
+      .then(data => setLivros(data))
+      .catch(err => console.error('Erro ao carregar livros:', err));
+  }, []);
+
     return (
   <div className="bg-[#050516] min-h-screen flex flex-col text-white p-8 gap-8">
 
@@ -29,29 +37,14 @@ function ListarLivros(){
         </thead>
 
         <tbody>
-          <tr className="border-b border-gray-800">
-            <td className="py-3">Clean Code</td>
-            <td>Robert Martin</td>
-            <td>2008</td>
-            <td className="text-green-400">Disponível</td>
-            <td>
-              <button className="bg-pink-500 px-3 py-1 rounded text-xs font-semibold hover:bg-pink-600">
-                EMPRESTAR
-              </button>
-            </td>
-          </tr>
-
-          <tr>
-            <td className="py-3">Refactoring</td>
-            <td>Martin Fowler</td>
-            <td>1999</td>
-            <td className="text-red-400">Emprestado</td>
-            <td>
-              <button className="bg-gray-600 px-3 py-1 rounded text-xs font-semibold cursor-not-allowed">
-                INDISPONÍVEL
-              </button>
-            </td>
-          </tr>
+          {livros.map(livro => (
+            <tr key={livro.id} className="border-b border-gray-800">
+              <td className="py-3">{livro.titulo}</td>
+              <td>{livro.autor}</td>
+              <td>{livro.ano}</td>
+              <td className="{livro.disponivel ? 'text-cyan-400' : 'text-pink-500'}">{livro.disponivel ? 'Disponível' : 'Emprestado'}</td>
+              </tr>
+          ))}
         </tbody>
       </table>
     </div>
