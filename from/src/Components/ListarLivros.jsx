@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
+
 function ListarLivros(){
-  const [livros, setLivros] = React.useState([]);
-  userEffect(() => {
+  const [livros, setLivros] = useState([]);
+  useEffect(() => {
     fetch('http://localhost:418/livros')
       .then(res => res.json())
       .then(data => setLivros(data))
@@ -42,7 +44,7 @@ function ListarLivros(){
               <td className="py-3">{livro.titulo}</td>
               <td>{livro.autor}</td>
               <td>{livro.ano}</td>
-              <td className="{livro.disponivel ? 'text-cyan-400' : 'text-pink-500'}">{livro.disponivel ? 'Disponível' : 'Emprestado'}</td>
+              <td className={livro.disponivel ? 'text-cyan-400' : 'text-pink-500'}>{livro.disponivel ? 'Disponível' : 'Emprestado'}</td>
               </tr>
           ))}
         </tbody>
