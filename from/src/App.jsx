@@ -1,16 +1,25 @@
-import Nav from './Components/Nav';
+import { useState } from "react";
+import Login from './pagina/Login';
+import Cadastro from './pagina/Cadastro';
 import Dashboard from './pagina/Dashboard';
-// import Nav2 from './Components/Nav';
 
 function App() {
   const [logado, setLogado] = useState(false);
+  const [tela, setTela] = useState('login');
 
   return (
     <>
-      <div className='grid grid-cols-[1fr_3fr] h-full'>
-        <Nav />
-        <Dashboard />
-      </div>
+      {logado ? (
+          <div>
+            <Dashboard />
+          </div>
+      ) : (
+        tela === 'login' ? (
+          <Login setLogado={setLogado} setTela={setTela} />
+        ) : (
+          <Cadastro setTela={setTela} />
+        )
+      )}
     </>
   )
 }

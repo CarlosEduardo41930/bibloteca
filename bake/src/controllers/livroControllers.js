@@ -1,5 +1,7 @@
 const db = require('../config/db');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 exports.listarLivros = async (req, res) =>{
     try{
@@ -18,12 +20,13 @@ exports.loginUsuario = async (req, res) => {
             return res.status(401).json({ erro: "Usuário não encontrado" });
         }
         const usuario = rows[0];
-       const senhaHash = await bcrypt.compare(senha, usuario.password);
-       if(senhaHash) {
-           res.json({ message: "Login bem-sucedido", usuario });
-       } else {
-           res.status(401).json({ erro: "Senha incorreta" });
-       }
+        const senhaHash = await bcrypt.compare(senha, usuario.password);
+        if(senhaHash) {
+            const token = jwt.sign({ email: usuario.email, nome: usuario.nome }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            res.json({ message: "Login bem-sucedido", usuario, token });
+        } else {
+            res.status(401).json({ erro: "Senha incorreta" });
+        }
     } catch (error) {
         res.status(500).json({ erro: 'Erro interno do servidor' });
     }
@@ -41,3 +44,5 @@ exports.cadastrarUsuario = async (req, res) => {
         res.status(500).json({ erro: 'Erro interno do servidor' });
     }
 };
+
+module.exports = exports;
