@@ -36,27 +36,34 @@ function Login() {
                 <h2 className="text-2xl font-bold text-cyan-400 mb-6 text-center">Login do Bibliotecário</h2>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <div>
-                        <label className="block text-gray-300 mb-1">Email:</label>
+                        <label className="block text-sm font-medium text-gray-300 mb-1.5">Email:</label>
                         <input
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full p-2 rounded bg-[#050516] text-white border border-gray-700 focus:border-cyan-400 outline-none"
+                            autoComplete="username"
+                            placeholder="seu@email.com"
+                            className="w-full p-2.5 rounded bg-[#050516] text-white border border-gray-700 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition"
                             required
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-300 mb-1">Senha:</label>
+                        <label className="block text-sm font-medium text-gray-300 mb-1.5">Senha:</label>
                         <input
                             type="password"
                             value={senha}
                             onChange={(e) => setSenha(e.target.value)}
-                            className="w-full p-2 rounded bg-[#050516] text-white border border-gray-700 focus:border-cyan-400 outline-none"
+                            autoComplete="current-password"
+                            placeholder="Sua senha"
+                            className="w-full p-2.5 rounded bg-[#050516] text-white border border-gray-700 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition"
                             required
                         />
                     </div>
-                    <button type="submit" disabled={mutation.isPending}
-                        className="w-full bg-cyan-400 text-[#050516] p-2 rounded font-semibold hover:bg-cyan-300 transition disabled:opacity-50">
+                    <button
+                        type="submit"
+                        disabled={mutation.isPending}
+                        className="w-full bg-cyan-400 text-[#050516] p-2.5 rounded font-semibold hover:bg-cyan-300 transition disabled:opacity-50"
+                    >
                         {mutation.isPending ? 'Entrando...' : 'Entrar'}
                     </button>
                     {mutation.isError && (
@@ -64,8 +71,11 @@ function Login() {
                             {(mutation.error?.response?.data?.erro) || 'Erro no login'}
                         </p>
                     )}
-                    <button type="button" onClick={() => navigate('/cadastro')}
-                        className="text-cyan-400 text-sm hover:underline mt-2">
+                    <button
+                        type="button"
+                        onClick={() => navigate('/cadastro')}
+                        className="text-cyan-400 text-sm hover:underline mt-2"
+                    >
                         Não tem conta? Cadastre-se
                     </button>
                 </form>

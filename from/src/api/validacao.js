@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const urlApi = import.meta.env.VITE_LINK_BASE_API || 'http://localhost:418';
-
+const urlApi = import.meta.env.VITE_LINK_BASE_API;
 const api = axios.create({
   baseURL: urlApi,
 });
