@@ -8,5 +8,6 @@ app.use(express.json());
 
 app.use(routes);
 app.listen(418, () => {
-    console.log('Servidor rodando na porta 418');
+  console.log('Acesse http://localhost:418 para testar a API');
+  console.log('O servidor se recusa a preparar café por ser um bule de chá');
 });
